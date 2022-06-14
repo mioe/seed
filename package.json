@@ -1,6 +1,10 @@
 {
 	"name": "seed",
 	"author": "mioe <mioe.galaxy@gmail.com> (https://github.com/mioe/)",
+	"engines": {
+		"node": ">=16",
+		"pnpm": ">=6"
+	},
 	"version": "0.0.1",
 	"license": "MIT",
 	"keywords": [],
