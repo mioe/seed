@@ -2,7 +2,7 @@
 	"name": "seed",
 	"author": "mioe <mioe.galaxy@gmail.com> (https://github.com/mioe/)",
 	"version": "0.0.1",
-	"license": "MIT License",
+	"license": "MIT",
 	"keywords": [],
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
