@@ -1,33 +1,41 @@
 version: "3.9"
 services:
   backend:
+    container_name: seed_backend
     build:
       context: .
       dockerfile: .docker/dev/backend/Dockerfile
     networks:
       - home-network
-  adm:
-    build:
-      context: .
-      dockerfile: .docker/dev/adm/Dockerfile
-    networks:
-      - home-network
-  frontend:
-    build:
-      context: .
-      dockerfile: .docker/dev/frontend/Dockerfile
-    networks:
-      - home-network
-  nginx:
-    build:
-      context: .
-      dockerfile: .docker/dev/nginx/Dockerfile
-    networks:
-      - home-network
-  postgres:
-    build:
-      context: .
-      dockerfile: .docker/dev/postgres/Dockerfile
+  # adm:
+  #   build:
+  #     context: .
+  #     dockerfile: .docker/dev/adm/Dockerfile
+  #   networks:
+  #     - home-network
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: .docker/dev/frontend/Dockerfile
+  #   networks:
+  #     - home-network
+  # nginx:
+  #   build:
+  #     context: .
+  #     dockerfile: .docker/dev/nginx/Dockerfile
+  #   networks:
+  #     - home-network
+  db:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '54320:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
     networks:
       - home-network
 
@@ -36,5 +44,5 @@ networks:
     driver: bridge
 
 volumes:
-  dbdata:
+  db:
     driver: local
