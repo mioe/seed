@@ -11,4 +11,4 @@ const fastify = Fastify({
 //   dir: join(__dirname, 'routes')
 // })
 
-fastify.listen({ port: 3000 })
+fastify.listen({ port: 3001 })

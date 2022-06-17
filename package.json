@@ -9,6 +9,9 @@
 	"license": "MIT",
 	"keywords": [],
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"dev": "concurrently -p \"[{name}]\" -n \"adm,backend,frontend\" -c \"magenta,cyan,green\" \"cd adm && pnpm dev\" \"cd backend && pnpm dev\" \"cd frontend && pnpm dev\""
+	},
+	"dependencies": {
+		"concurrently": "^7.2.2"
 	}
 }
