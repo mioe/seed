@@ -1,14 +1,33 @@
 import Fastify from 'fastify'
-// import { join } from 'path'
-// import autoLoad from '@fastify/autoload'
+import { join } from 'path'
+import autoLoad from '@fastify/autoload'
+import type { FastifyInstance } from 'fastify'
+import type { Server, IncomingMessage, ServerResponse } from 'http'
 
-const fastify = Fastify({
-  logger: true
+/**
+ * Init serve
+ */
+const fastify: FastifyInstance<
+	Server,
+	IncomingMessage,
+	ServerResponse
+> = Fastify({
+	logger: true,
 })
 
-// Will load all routes under src/routes
-// fastify.register(autoLoad, {
-//   dir: join(__dirname, 'routes')
-// })
+/**
+ * Auto-routing
+ */
+fastify.register(autoLoad, {
+	dir: join(__dirname, 'routes'),
+})
 
-fastify.listen({ port: 3001 })
+/**
+ * Start app
+ */
+fastify.listen({ port: 3001 }, (err, address) => {
+	if (err) {
+		console.error(err)
+		process.exit(1)
+	}
+})
