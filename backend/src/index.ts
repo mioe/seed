@@ -1,6 +1,6 @@
 import Fastify from 'fastify'
 import { join } from 'path'
-import autoLoad from '@fastify/autoload'
+import autoload from '@fastify/autoload'
 import type { FastifyInstance } from 'fastify'
 import type { Server, IncomingMessage, ServerResponse } from 'http'
 
@@ -12,13 +12,23 @@ const fastify: FastifyInstance<
 	IncomingMessage,
 	ServerResponse
 > = Fastify({
-	logger: true,
+	logger: {
+		transport: {
+			target: 'pino-pretty',
+			options: {
+				destination: 1,
+				colorize: true,
+				translateTime: 'HH:MM:ss Z',
+				ignore: 'pid,hostname',
+			},
+		},
+	},
 })
 
 /**
  * Auto-routing
  */
-fastify.register(autoLoad, {
+fastify.register(autoload, {
 	dir: join(__dirname, 'routes'),
 })
 
