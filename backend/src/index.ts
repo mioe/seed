@@ -26,6 +26,13 @@ const fastify: FastifyInstance<
 })
 
 /**
+ * Auto-install plugins
+ */
+fastify.register(autoload, {
+	dir: join(__dirname, 'plugins'),
+})
+
+/**
  * Auto-routing
  */
 fastify.register(autoload, {
