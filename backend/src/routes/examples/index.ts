@@ -1,9 +1,9 @@
 import { FastifyPluginAsync } from 'fastify'
+import { schema } from './schema'
+import { handler } from './handler'
 
 const examples: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
-	fastify.get('/', async(request, reply) => {
-		return 'Hi there!'
-	})
+	fastify.get('/', { schema }, handler)
 }
 
 export default examples

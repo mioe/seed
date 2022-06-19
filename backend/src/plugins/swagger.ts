@@ -11,7 +11,7 @@ export default fp<FastifyDynamicSwaggerOptions>(async(fastify, opts) => {
 			},
 			servers: [
 				{
-					url: 'http://localhost',
+					url: 'http://localhost:3001',
 				},
 			],
 		},
