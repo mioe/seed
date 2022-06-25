@@ -9,15 +9,15 @@ pnpm dev # hmr for all adm/backend/fronted
 
 ## features
 ### adm
-- vue3-vite application (spa)
+- vue3-vite application (spa) - http://localhost:3002
 
 ### backend
-- fastify (rest-api)
-- swagger (auto-generate api docs)
-- prisma (orm)
+- fastify (rest-api) - http://localhost:3001
+- swagger (auto-generate api docs) - http://localhost:3001/documentation
+- prisma (orm) - npx prisma <cmd>
 
 ### fronted
-- nuxt3 (ssr)
+- nuxt3 (ssr) - http://localhost:3000
 
 ## backend
 ### RSA Signatures - Certificates (with passphrase)
