@@ -1,6 +1,7 @@
 import Fastify from 'fastify'
 import { join } from 'path'
 import autoload from '@fastify/autoload'
+import 'dotenv/config'
 import type { FastifyInstance } from 'fastify'
 import type { Server, IncomingMessage, ServerResponse } from 'http'
 
