@@ -11,8 +11,24 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id        String   @id @default(uuid())
+  username  String   @unique
   email     String   @unique
-  name      String?
+  password  String
+  avatar    String?
+  isDeleted Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  Role      Role     @relation(fields: [roleId], references: [id])
+  roleId    Int
+}
+
+model Role {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  permissions Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  User        User[]
 }
