@@ -15,6 +15,33 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 		reply.send({ token })
 	})
 
+	fastify.post('/sign-in', {
+		schema: signUpSchema,
+	},
+	(_, reply) => {
+		// @ts-ignore
+		const token = fastify.jwt.sign({ username: 'misha misha' })
+		reply.send({ token })
+	})
+
+	fastify.post('/sign-out', {
+		schema: signUpSchema,
+	},
+	(_, reply) => {
+		// @ts-ignore
+		const token = fastify.jwt.sign({ username: 'misha misha' })
+		reply.send({ token })
+	})
+
+	fastify.post('/refresh-token', {
+		schema: signUpSchema,
+	},
+	(_, reply) => {
+		// @ts-ignore
+		const token = fastify.jwt.sign({ username: 'misha misha' })
+		reply.send({ token })
+	})
+
 	fastify.get('/protected', {
 		onRequest: [fastify.authenticate],
 		schema: protectedSchema,
