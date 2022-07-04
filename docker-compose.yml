@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www
-      - ./docker/dev/nginx/logs:/var/log/nginx
+      - ./.docker/dev/nginx/logs:/var/log/nginx
     ports:
       - 3030:80
 
