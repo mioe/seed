@@ -1,5 +1,15 @@
 version: "3.9"
 services:
+  nginx:
+    build:
+      context: .docker/dev/nginx
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/var/www
+      - ./docker/dev/nginx/logs:/var/log/nginx
+    ports:
+      - 3030:80
+
   db:
     image: postgres:14-alpine
     restart: always
