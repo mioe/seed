@@ -679,11 +679,11 @@ packages:
       - webpack
     dev: true
 
-  /@nuxt/kit/3.0.0-rc.4_skiu47drlo3onr3quq54qxyima:
+  /@nuxt/kit/3.0.0-rc.4_bcwimvlikb67cugtywnrdg5ffq:
     resolution: {integrity: sha512-ZBSeHFy3fPUx0equCtyP6eVUAZQWwRqTp2YnHSFqM5+yhN5aTGo8gBlfwttVBr4yhFBpGFRHhQj/iNPqrCeTnQ==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
-      '@nuxt/schema': 3.0.0-rc.4_skiu47drlo3onr3quq54qxyima
+      '@nuxt/schema': 3.0.0-rc.4_bcwimvlikb67cugtywnrdg5ffq
       c12: 0.2.8
       consola: 2.15.3
       defu: 6.0.0
@@ -698,8 +698,8 @@ packages:
       pkg-types: 0.3.3
       scule: 0.2.1
       semver: 7.3.7
-      unctx: 1.1.4_skiu47drlo3onr3quq54qxyima
-      unimport: 0.2.10_skiu47drlo3onr3quq54qxyima
+      unctx: 1.1.4_bcwimvlikb67cugtywnrdg5ffq
+      unimport: 0.2.10_bcwimvlikb67cugtywnrdg5ffq
       untyped: 0.4.4
     transitivePeerDependencies:
       - esbuild
@@ -730,7 +730,7 @@ packages:
       - webpack
     dev: true
 
-  /@nuxt/schema/3.0.0-rc.4_skiu47drlo3onr3quq54qxyima:
+  /@nuxt/schema/3.0.0-rc.4_bcwimvlikb67cugtywnrdg5ffq:
     resolution: {integrity: sha512-5yjfKvPJ/NboevQYZLyO1SS9nJW6KHtdd7Ei61D19gYGtnN+aOpxOnUX08A1rZMb3G2Cw5JRxVeF9+AfBYefJg==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     dependencies:
@@ -743,7 +743,7 @@ packages:
       scule: 0.2.1
       std-env: 3.1.1
       ufo: 0.8.4
-      unimport: 0.2.10_skiu47drlo3onr3quq54qxyima
+      unimport: 0.2.10_bcwimvlikb67cugtywnrdg5ffq
     transitivePeerDependencies:
       - esbuild
       - rollup
@@ -793,7 +793,7 @@ packages:
     peerDependencies:
       vue: ^3.2.37
     dependencies:
-      '@nuxt/kit': 3.0.0-rc.4_skiu47drlo3onr3quq54qxyima
+      '@nuxt/kit': 3.0.0-rc.4_bcwimvlikb67cugtywnrdg5ffq
       '@rollup/plugin-replace': 4.0.0_rollup@2.75.7
       '@vitejs/plugin-vue': 2.3.3_vite@2.9.13+vue@3.2.37
       '@vitejs/plugin-vue-jsx': 1.3.10
@@ -801,7 +801,7 @@ packages:
       chokidar: 3.5.3
       cssnano: 5.1.12_postcss@8.4.14
       defu: 6.0.0
-      esbuild: 0.14.43
+      esbuild: 0.14.48
       escape-string-regexp: 5.0.0
       externality: 0.2.2
       fs-extra: 10.1.0
@@ -818,7 +818,7 @@ packages:
       rollup: 2.75.7
       rollup-plugin-visualizer: 5.6.0_rollup@2.75.7
       ufo: 0.8.4
-      unplugin: 0.7.1_skiu47drlo3onr3quq54qxyima
+      unplugin: 0.7.1_bcwimvlikb67cugtywnrdg5ffq
       vite: 2.9.13
       vite-node: 0.14.2
       vite-plugin-checker: 0.4.7_vite@2.9.13
@@ -981,7 +981,7 @@ packages:
   /@types/jsdom/16.2.14:
     resolution: {integrity: sha512-6BAy1xXEmMuHeAJ4Fv4yXKwBDTGTOseExKE3OaHiNycdHdZw59KfYzrt0DkDluvwmik1HRt6QS7bImxUmpSy+w==}
     dependencies:
-      '@types/node': 17.0.42
+      '@types/node': 18.0.1
       '@types/parse5': 6.0.3
       '@types/tough-cookie': 4.0.2
     dev: true
@@ -999,6 +999,10 @@ packages:
     resolution: {integrity: sha512-Q5BPGyGKcvQgAMbsr7qEGN/kIPN6zZecYYABeTDBizOsau+2NMdSVTar9UQw21A2+JyA2KRNDYaYrPB0Rpk2oQ==}
     dev: true
 
+  /@types/node/18.0.1:
+    resolution: {integrity: sha512-CmR8+Tsy95hhwtZBKJBs0/FFq4XX7sDZHlGGf+0q+BRZfMbOTkzkj0AFAuTyXbObDIoanaBBW0+KEW+m3N16Wg==}
+    dev: true
+
   /@types/parse5/6.0.3:
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
     dev: true
@@ -1006,7 +1010,7 @@ packages:
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
-      '@types/node': 17.0.42
+      '@types/node': 18.0.1
     dev: true
 
   /@types/responselike/1.0.0:
@@ -1515,7 +1519,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.1
-      caniuse-lite: 1.0.30001362
+      caniuse-lite: 1.0.30001363
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1606,7 +1610,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001362
+      caniuse-lite: 1.0.30001363
       electron-to-chromium: 1.4.177
       node-releases: 2.0.5
       update-browserslist-db: 1.0.4_browserslist@4.21.1
@@ -1689,13 +1693,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.21.1
-      caniuse-lite: 1.0.30001362
+      caniuse-lite: 1.0.30001363
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite/1.0.30001362:
-    resolution: {integrity: sha512-PFykHuC7BQTzCGQFaV6wD8IDRM3HpI83BXr99nNJhoOyDufgSuKlt0QVlWYt5ZJtEYFeuNVF5QY3kJcu8hVFjQ==}
+  /caniuse-lite/1.0.30001363:
+    resolution: {integrity: sha512-HpQhpzTGGPVMnCjIomjt+jvyUu8vNFo3TaDiZ/RcoTrlOq/5+tC8zHdsbgFB6MxmaY+jCpsH09aD80Bb4Ow3Sg==}
     dev: true
 
   /chalk/2.4.2:
@@ -2251,7 +2255,7 @@ packages:
     resolution: {integrity: sha512-Ol/IPXUARn9CSbkrdV4VJo7uCy1I3VuSiWCaFSg+8BdUOzF9n3jefIpcgAydvUZbTdEBZs2vEiTiS9m61ssiDA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
-      type-fest: 2.15.1
+      type-fest: 2.16.0
     dev: true
 
   /dotenv/16.0.1:
@@ -3769,7 +3773,7 @@ packages:
     resolution: {integrity: sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 17.0.42
+      '@types/node': 18.0.1
       merge-stream: 2.0.0
       supports-color: 7.2.0
     dev: true
@@ -5955,8 +5959,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /type-fest/2.15.1:
-    resolution: {integrity: sha512-LYSjcIz3NmoQksXq/3/B7Nfad+T8mkaI628agAAnHCpXPTBRMK2ygt3eABpzII8CbZZM8dLdVQ4Gr8ousjFjMw==}
+  /type-fest/2.16.0:
+    resolution: {integrity: sha512-qpaThT2HQkFb83gMOrdKVsfCN7LKxP26Yq+smPzY1FqoHRjqmjqHXA7n5Gkxi8efirtbeEUxzfEdePthQWCuHw==}
     engines: {node: '>=12.20'}
     dev: true
 
@@ -5990,13 +5994,13 @@ packages:
       - webpack
     dev: true
 
-  /unctx/1.1.4_skiu47drlo3onr3quq54qxyima:
+  /unctx/1.1.4_bcwimvlikb67cugtywnrdg5ffq:
     resolution: {integrity: sha512-fQMML+GjUpIjQa0HBrrJezo2dFpTAbQbU0/KFKw4T5wpc9deGjLHSYthdfNAo2xSWM34csI6arzedezQkqtfGw==}
     dependencies:
       acorn: 8.7.1
       estree-walker: 2.0.2
       magic-string: 0.26.2
-      unplugin: 0.6.3_skiu47drlo3onr3quq54qxyima
+      unplugin: 0.6.3_bcwimvlikb67cugtywnrdg5ffq
     transitivePeerDependencies:
       - esbuild
       - rollup
@@ -6061,7 +6065,7 @@ packages:
       - webpack
     dev: true
 
-  /unimport/0.2.10_skiu47drlo3onr3quq54qxyima:
+  /unimport/0.2.10_bcwimvlikb67cugtywnrdg5ffq:
     resolution: {integrity: sha512-HoQ0ZDzHJboRYJ4/YxtMAATxiya/s5C2UE6jLFNj1e0D6Qfq6Pw2P40L+ALCkjLwLhR8l2VROE7kba/AaFtdQg==}
     dependencies:
       '@rollup/pluginutils': 4.2.1
@@ -6073,7 +6077,7 @@ packages:
       pathe: 0.3.2
       scule: 0.2.1
       strip-literal: 0.4.0
-      unplugin: 0.7.1_skiu47drlo3onr3quq54qxyima
+      unplugin: 0.7.1_bcwimvlikb67cugtywnrdg5ffq
     transitivePeerDependencies:
       - esbuild
       - rollup
@@ -6135,7 +6139,7 @@ packages:
       webpack-virtual-modules: 0.4.4
     dev: true
 
-  /unplugin/0.6.3_skiu47drlo3onr3quq54qxyima:
+  /unplugin/0.6.3_bcwimvlikb67cugtywnrdg5ffq:
     resolution: {integrity: sha512-CoW88FQfCW/yabVc4bLrjikN9HC8dEvMU4O7B6K2jsYMPK0l6iAnd9dpJwqGcmXJKRCU9vwSsy653qg+RK0G6A==}
     peerDependencies:
       esbuild: '>=0.13'
@@ -6153,7 +6157,7 @@ packages:
         optional: true
     dependencies:
       chokidar: 3.5.3
-      esbuild: 0.14.43
+      esbuild: 0.14.48
       rollup: 2.75.7
       vite: 2.9.13
       webpack-sources: 3.2.3
@@ -6183,7 +6187,7 @@ packages:
       webpack-virtual-modules: 0.4.4
     dev: true
 
-  /unplugin/0.7.1_skiu47drlo3onr3quq54qxyima:
+  /unplugin/0.7.1_bcwimvlikb67cugtywnrdg5ffq:
     resolution: {integrity: sha512-Z6hNDXDNh9aimMkPU1mEjtk+2ova8gh0y7rJeJdGH1vWZOHwF2lLQiQ/R97rv9ymmzEQXsR2fyMet72T8jy6ew==}
     peerDependencies:
       esbuild: '>=0.13'
@@ -6202,7 +6206,7 @@ packages:
     dependencies:
       acorn: 8.7.1
       chokidar: 3.5.3
-      esbuild: 0.14.43
+      esbuild: 0.14.48
       rollup: 2.75.7
       vite: 2.9.13
       webpack-sources: 3.2.3
@@ -6371,7 +6375,7 @@ packages:
       stylus:
         optional: true
     dependencies:
-      esbuild: 0.14.43
+      esbuild: 0.14.48
       postcss: 8.4.14
       resolve: 1.22.1
       rollup: 2.75.7
