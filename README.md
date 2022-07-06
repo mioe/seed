@@ -1,6 +1,12 @@
 # seed
 > my beautiful monoproject
 
+## required dependencies
+- dev mode
+	- nodejs >= 16
+	- pnpm >= 6
+	- docker + docker-compose
+
 ## first installation
 ```bash
 pnpm install --shamefully-hoist  # install packages
@@ -15,43 +21,18 @@ docker-compose up # (optional) start db && nginx
 pnpm dev # start hmr for all adm/backend/fronted
 ```
 
-## features
-### adm
-- vue3-vite application (spa) - http://localhost:3002
-
-### backend
-- fastify (rest-api) - http://localhost:3001
-- swagger (auto-generate api docs) - http://localhost:3001/documentation
-- prisma (orm) - npx prisma <cmd>
-
-### fronted
-- nuxt3 (ssr) - http://localhost:3000
-
-## backend
-### RSA Signatures - Certificates (with passphrase)
-Certificates `private.pem` and `public.pem` are generated with the following command lines
-```bash
-# generate a 2048-bit RSA key pair, and encrypts them with a passphrase
-# the passphrase I choose for the demo files is: super secret passphrase
-openssl genrsa -des3 -out ./src/config/private.pem 2048
-
-# export the RSA public key to a file
-openssl rsa -in ./src/config/private.pem -outform PEM -pubout -out ./src/config/public.pem
-```
-Code example
-```js
-const { readFileSync } = require('fs')
-const fastify = require('fastify')()
-const jwt = require('@fastify/jwt')
-
-fastify.register(jwt, {
-	secret: {
-		private: {
-			key: readFileSync('path/to/private.pem', 'utf8'),
-			passphrase: 'super secret passphrase'
-		},
-		public: readFileSync('path/to/public.pem', 'utf8')
-	},
-	sign: { algorithm: 'RS256' }
-})
-```
+# used ports
+- in host
+	- nuxt (fronted) - [http://localhost:3000](http://localhost:3000)
+	- fastify (backend) - [http://localhost:3001](http://localhost:3001)
+	- swagger (backend) - [http://localhost:3001/documentation](http://localhost:3001/documentation)
+	- vue (adm) - [http://localhost:3002](http://localhost:3002)
+- in nginx
+	- fronted - [http://localhost:3030](http://localhost:3030)
+	- backend
+		- api - http://localhost:3030/api/*
+		- storage - http://localhost:3030/storage/*
+		- close api (only for adm) - http://localhost:3030/adm/*
+	- adm - [http://adm.localhost:3030](http://adm.localhost:3030)
+- other
+	- postgres `:port=54320`

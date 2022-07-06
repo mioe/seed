@@ -6,8 +6,7 @@ to independently deploy some of those.
 
 In this folder you should define all the routes that define the endpoints
 of your web application.
-Each service is a [Fastify
-plugin](https://www.fastify.io/docs/latest/Reference/Plugins/), it is
+Each service is a [Fastify plugin](https://www.fastify.io/docs/latest/Reference/Plugins/), it is
 encapsulated (it can have its own independent plugins) and it is
 typically stored in a file; be careful to group your routes logically,
 e.g. all `/users` routes in a `users.js` file. We have added
