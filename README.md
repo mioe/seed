@@ -21,7 +21,7 @@ docker-compose up # (optional) start db && nginx
 pnpm dev # start hmr for all adm/backend/fronted
 ```
 
-# used ports
+## used ports
 - in host
 	- nuxt (fronted) - http://localhost:3000
 	- fastify (backend) - http://localhost:3001
