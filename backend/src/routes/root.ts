@@ -1,4 +1,4 @@
-import { FastifyPluginAsync } from 'fastify'
+import type { FastifyPluginAsync } from 'fastify'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const root: FastifyPluginAsync = async(fastify, opts): Promise<void> => {

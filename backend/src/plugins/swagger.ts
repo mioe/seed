@@ -16,6 +16,18 @@ export default fp<FastifyDynamicSwaggerOptions>(async(fastify, opts) => {
 					url: 'http://localhost:3001',
 				},
 			],
+			components: {
+				securitySchemes: {
+					bearerAuth: {
+						type: 'http',
+						scheme: 'bearer',
+						bearerFormat: 'JWT',
+					},
+				},
+			},
+			security: [{
+				bearerAuth: [],
+			}],
 		},
 		hideUntagged: true,
 		exposeRoute: true,

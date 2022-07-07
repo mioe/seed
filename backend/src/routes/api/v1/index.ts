@@ -10,7 +10,6 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 		schema: signUpSchema,
 	},
 	(_, reply) => {
-		// @ts-ignore
 		const token = fastify.jwt.sign({ username: 'misha misha' })
 		reply.send({ token })
 	})
@@ -19,7 +18,6 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 		schema: signUpSchema,
 	},
 	(_, reply) => {
-		// @ts-ignore
 		const token = fastify.jwt.sign({ username: 'misha misha' })
 		reply.send({ token })
 	})
@@ -28,7 +26,6 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 		schema: signUpSchema,
 	},
 	(_, reply) => {
-		// @ts-ignore
 		const token = fastify.jwt.sign({ username: 'misha misha' })
 		reply.send({ token })
 	})
