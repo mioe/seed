@@ -2,7 +2,18 @@ import {
 	signUpSchema,
 	protectedSchema,
 } from './schema'
-import type { FastifyPluginAsync } from 'fastify'
+import type { FastifyPluginAsync, FastifyReply } from 'fastify'
+
+const generateNewTokens = async(reply: FastifyReply) => {
+	const [token, refreshToken] = await Promise.all([
+		reply.jwtSign({ username: 'misha misha' }),
+		reply.jwtSign({ username: 'dd' }, { expiresIn: '3d' }),
+	])
+	return {
+		token,
+		refreshToken,
+	}
+}
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const apiV1: FastifyPluginAsync = async(fastify, opts) => {
@@ -10,8 +21,7 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 		schema: signUpSchema,
 	},
 	async(_, reply) => {
-		const token = await reply.jwtSign({ username: 'misha misha' })
-		const refreshToken = await reply.jwtSign({ username: 'dd' }, { expiresIn: '3d' })
+		const { token, refreshToken } = await generateNewTokens(reply)
 		reply.send({ token, refreshToken })
 	})
 
@@ -35,10 +45,9 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 		onRequest: [fastify.authenticate],
 		schema: signUpSchema,
 	},
-	(_, reply) => {
-		// @ts-ignore
-		const token = fastify.jwt.sign({ username: 'misha misha' })
-		reply.send({ token })
+	async(_, reply) => {
+		const { token, refreshToken } = await generateNewTokens(reply)
+		reply.send({ token, refreshToken })
 	})
 
 	fastify.get('/protected', {
