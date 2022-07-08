@@ -15,7 +15,10 @@ const jwtPlugin: FastifyPluginCallback = fp(async(fastify, opts, done) => {
 			},
 			public: readFileSync(`${PATH}/public.pem`, 'utf8'),
 		},
-		sign: { algorithm: 'RS256' },
+		sign: {
+			algorithm: 'RS256',
+			expiresIn: '15m',
+		},
 	})
 
 	fastify.decorate('authenticate', async(request, reply) => {

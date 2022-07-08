@@ -17,11 +17,6 @@ export const signUpSchema: FastifySchema = {
 	tags: ['jwt authentication'],
 	description: 'Sing Up',
 	body: signUpBody,
-	response: {
-		200: {
-			token: { type: 'string' },
-		},
-	},
 }
 
 
