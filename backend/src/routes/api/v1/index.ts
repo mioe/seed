@@ -22,7 +22,10 @@ const apiV1: FastifyPluginAsync = async(fastify, opts) => {
 	},
 	async(_, reply) => {
 		const { token, refreshToken } = await generateNewTokens(reply)
-		reply.send({ token, refreshToken })
+		const { redis } = fastify
+		redis.set('hello', 'world', (err) => {
+			reply.send(err || { token, refreshToken })
+		})
 	})
 
 	fastify.post('/sign-in', {
