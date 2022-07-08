@@ -36,3 +36,4 @@ pnpm dev # start hmr for all adm/backend/fronted
 	- adm - http://adm.localhost:3030
 - other
 	- postgres `:port=54320`
+	- redis `:port=63790`
