@@ -8,7 +8,7 @@ services:
       - ./:/var/www
       - ./.docker/dev/nginx/logs:/var/log/nginx
     ports:
-      - 3030:80
+      - '3030:80'
 
   db:
     image: postgres:14-alpine
@@ -22,6 +22,17 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '63790:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+    volumes:
+      - cache:/data
+
 volumes:
   db:
+    driver: local
+  cache:
     driver: local
