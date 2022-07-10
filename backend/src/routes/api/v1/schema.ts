@@ -5,10 +5,10 @@ export const signUpBody = {
 	$id: 'post',
 	type: 'object',
 	properties: {
-		username: { type: 'string' },
+		email: { type: 'string' },
 		password: { type: 'string' },
 	},
-	required: ['username', 'password'],
+	required: ['email', 'password'],
 } as const
 
 export type TSignUpBody = FromSchema<typeof signUpBody>
