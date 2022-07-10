@@ -33,7 +33,10 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	async(request, reply) => {
 		const id = Number(request.params['id']) as number
 		const body = request.body as Prisma.RoleUpdateInput
-		const role = await fastify.prisma.role.update({ where: { id }, data: { ...body, updatedAt: new Date() } })
+		const role = await fastify.prisma.role.update({
+			where: { id },
+			data: { ...body, updatedAt: new Date() },
+		})
 		reply.send({ role })
 	})
 
