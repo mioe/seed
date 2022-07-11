@@ -1,4 +1,6 @@
 import { roleCreateSchema } from './schema'
+import { checkPermissions } from '../../../../helpers'
+import { RolePermissions } from '../../../../permissions'
 import type { Prisma } from '@prisma/client'
 import type { FastifyPluginAsync } from 'fastify'
 
@@ -7,7 +9,13 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	fastify.get('/', {
 		onRequest: [
 			fastify.authenticate,
-			// todo check role role::view
+			(request, reply, done) => {
+				checkPermissions(
+					done,
+					RolePermissions.View,
+					request.user['permissions'],
+				)
+			},
 		],
 	},
 	async(request, reply) => {
@@ -18,7 +26,13 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	fastify.post('/', {
 		onRequest: [
 			fastify.authenticate,
-			// todo check role role::create
+			(request, reply, done) => {
+				checkPermissions(
+					done,
+					RolePermissions.Create,
+					request.user['permissions'],
+				)
+			},
 		],
 		schema: roleCreateSchema,
 	},
@@ -36,7 +50,13 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	fastify.put('/:id', {
 		onRequest: [
 			fastify.authenticate,
-			// todo check role role::update
+			(request, reply, done) => {
+				checkPermissions(
+					done,
+					RolePermissions.Update,
+					request.user['permissions'],
+				)
+			},
 		],
 	},
 	async(request, reply) => {
@@ -52,7 +72,13 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	fastify.delete('/:id', {
 		onRequest: [
 			fastify.authenticate,
-			// todo check role role::remove
+			(request, reply, done) => {
+				checkPermissions(
+					done,
+					RolePermissions.Remove,
+					request.user['permissions'],
+				)
+			},
 		],
 	},
 	async(request, reply) => {
