@@ -1,4 +1,10 @@
-import { roleCreateSchema } from './schema'
+import {
+	roleSchema,
+	roleViewSchema,
+	roleCreateSchema,
+	roleUpdateSchema,
+	roleRemoveSchema,
+} from './schema'
 import { checkPermissions } from '../../../../helpers'
 import { RolePermissions } from '../../../../permissions'
 import type { Prisma } from '@prisma/client'
@@ -6,6 +12,8 @@ import type { FastifyPluginAsync } from 'fastify'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
+	fastify.addSchema(roleSchema)
+
 	fastify.get('/', {
 		onRequest: [
 			fastify.authenticate,
@@ -17,6 +25,7 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 				)
 			},
 		],
+		schema: roleViewSchema,
 	},
 	async(request, reply) => {
 		const roles = await fastify.prisma.role.findMany()
@@ -58,6 +67,7 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 				)
 			},
 		],
+		schema: roleUpdateSchema,
 	},
 	async(request, reply) => {
 		const id = Number(request.params['id']) as number
@@ -80,6 +90,7 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 				)
 			},
 		],
+		schema: roleRemoveSchema,
 	},
 	async(request, reply) => {
 		const id = Number(request.params['id']) as number
