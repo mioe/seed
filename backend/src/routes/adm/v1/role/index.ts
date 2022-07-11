@@ -5,7 +5,10 @@ import type { FastifyPluginAsync } from 'fastify'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	fastify.get('/', {
-		onRequest: [fastify.authenticate],
+		onRequest: [
+			fastify.authenticate,
+			// todo check role role::view
+		],
 	},
 	async(request, reply) => {
 		const roles = await fastify.prisma.role.findMany()
@@ -13,7 +16,10 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	})
 
 	fastify.post('/', {
-		onRequest: [fastify.authenticate],
+		onRequest: [
+			fastify.authenticate,
+			// todo check role role::create
+		],
 		schema: roleCreateSchema,
 	},
 	async(request, reply) => {
@@ -28,7 +34,10 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	})
 
 	fastify.put('/:id', {
-		onRequest: [fastify.authenticate],
+		onRequest: [
+			fastify.authenticate,
+			// todo check role role::update
+		],
 	},
 	async(request, reply) => {
 		const id = Number(request.params['id']) as number
@@ -41,7 +50,10 @@ const role: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
 	})
 
 	fastify.delete('/:id', {
-		onRequest: [fastify.authenticate],
+		onRequest: [
+			fastify.authenticate,
+			// todo check role role::remove
+		],
 	},
 	async(request, reply) => {
 		const id = Number(request.params['id']) as number
