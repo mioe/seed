@@ -7,12 +7,9 @@ export const roleSchema = {
 	$id: 'role',
 	type: 'object',
 	properties: {
-		id: { type: 'number' },
 		name: { type: 'string' },
 		description: { type: 'string' },
 		permissions: { type: 'array', items: { type: 'string' } },
-		createdAt: { type: 'string' },
-		updatedAt: { type: 'string' },
 	},
 	examples: [
 		{
