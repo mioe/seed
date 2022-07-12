@@ -43,8 +43,8 @@ fastify.register(autoload, {
 /**
  * Start app
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 fastify.listen({ port: 3001 }, (err, address) => {
+	console.log('🦕 Server listening at', address)
 	if (err) {
 		console.error(err)
 		process.exit(1)

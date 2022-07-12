@@ -2,8 +2,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "nodemon",
-		"build": "rm -rf build && esbuild `find src \\( -name '*.ts' \\)` --platform=node --outdir=build --bundle",
-		"start": "pnpm build && node build"
+		"build": "etsc",
+		"start": "node dist/index.js"
 	},
 	"dependencies": {
 		"@fastify/autoload": "^5.0.0",
@@ -19,6 +19,7 @@
 	"devDependencies": {
 		"@types/node": "^17.0.42",
 		"esbuild": "^0.14.43",
+		"esbuild-node-tsc": "^1.8.6",
 		"nodemon": "^2.0.16",
 		"pino-pretty": "^8.0.0",
 		"prisma": "^4.0.0",
