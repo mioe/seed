@@ -1,4 +1,5 @@
 packages:
+  - '@ui'
   - 'adm'
   - 'backend'
   - 'frontend'

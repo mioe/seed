@@ -11,6 +11,9 @@
 	"scripts": {
 		"dev": "concurrently -p \"[{name}]\" -n \"adm,backend,frontend\" -c \"magenta,cyan,green\" \"cd adm && pnpm dev\" \"cd backend && pnpm dev\" \"cd frontend && pnpm dev\""
 	},
+	"dependencies": {
+		"@seed/ui": "workspace/@ui"
+	},
 	"devDependencies": {
 		"@mioe/eslint-config": "^0.1.1",
 		"concurrently": "^7.2.2",
