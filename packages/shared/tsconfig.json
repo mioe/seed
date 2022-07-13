@@ -21,10 +21,7 @@
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"moduleResolution": "Node",
-		"skipLibCheck": true,
-		"paths": {
-			"@seed/shared/*": ["../shared/src/*"]
-		}
+		"skipLibCheck": true
 	},
 	"include": [
 		"src/**/*"
