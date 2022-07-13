@@ -1,4 +1,5 @@
 {
+	"name": "@seed/frontend",
   "private": true,
   "scripts": {
     "build": "nuxt build",
