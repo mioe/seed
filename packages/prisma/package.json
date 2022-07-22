@@ -1,0 +1,10 @@
+{
+	"name": "@seed/prisma",
+	"dependencies": {
+		"@prisma/client": "^4.1.0"
+	},
+	"devDependencies": {
+		"prisma": "^4.1.0",
+		"typescript": "^4.5.4"
+	}
+}
