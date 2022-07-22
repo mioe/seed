@@ -23,7 +23,7 @@
 		"moduleResolution": "Node",
 		"skipLibCheck": true,
 		"paths": {
-			"@seed/shared/*": ["../shared/src/*"]
+			"@seed/common/*": ["../common/src/*"]
 		}
 	},
 	"include": [

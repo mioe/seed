@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from 'fastify'
-import { RolePermissions } from '@seed/shared/constants/permissions'
+import { RolePermissions } from '@seed/common/constants/permissions'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const root: FastifyPluginAsync = async(fastify, opts): Promise<void> => {
