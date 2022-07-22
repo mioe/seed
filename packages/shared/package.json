@@ -1,6 +1,3 @@
 {
-  "name": "@seed/shared",
-  "devDependencies": {
-    "typescript": "^4.7.4"
-  }
+	"name": "@seed/shared"
 }
