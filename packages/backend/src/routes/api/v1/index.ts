@@ -1,7 +1,7 @@
 import {
 	signUpSchema,
-	protectedSchema,
 } from './schema'
+import { SIMPLE_ROLE_NAME } from '../../../common/constants/const'
 import type { FastifyPluginAsync, FastifyReply } from 'fastify'
 import type { Prisma } from '@prisma/client'
 
@@ -16,6 +16,8 @@ const generateNewTokens = async(reply: FastifyReply) => {
 	}
 }
 
+let CACHE_SIMPLE_ROLE_ID: number | undefined = undefined
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const routes: FastifyPluginAsync = async(fastify, opts) => {
 	fastify.post('/sign-up', {
@@ -26,13 +28,32 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 			redis,
 			prisma,
 		} = fastify
-		const bodyData = request.body as Prisma.UserCreateInput
 
 		try {
+			if (!CACHE_SIMPLE_ROLE_ID) {
+				const fSimpleRole = await prisma.role.findFirst({ where: { name: SIMPLE_ROLE_NAME } })
+				if (!fSimpleRole) {
+					throw new Error('🦕 Simple Role doesn\'t exist')
+				}
+				console.log('🦕 Cache for Simple Role created!')
+				CACHE_SIMPLE_ROLE_ID = fSimpleRole.id
+			}
+
+			const bodyRequest = request.body as Prisma.UserCreateInput
+			const bodyData = {
+				...bodyRequest,
+				Role: {
+					connect: {
+						id: CACHE_SIMPLE_ROLE_ID,
+					},
+				},
+			} as Prisma.UserCreateInput
+
 			const user = await prisma.user.create({ data: bodyData })
 			console.log('🦕 user', user)
 		} catch (err) {
 			fastify.log.error('user', err)
+			throw new Error(`🦕 Something went wrong\n ${err}`)
 		}
 
 		const { token, refreshToken } = await generateNewTokens(reply)
@@ -70,7 +91,6 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 
 	fastify.get('/protected', {
 		onRequest: [fastify.authenticate],
-		schema: protectedSchema,
 	},
 	async(request, reply) => {
 		reply.send({ user: request.user })

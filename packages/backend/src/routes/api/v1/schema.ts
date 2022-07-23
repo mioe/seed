@@ -19,11 +19,6 @@ export const signUpBody = {
 			email: `example+${Date.now()}@gmail.com`,
 			password: 'qazwsxedc',
 		},
-		{
-			username: 'Example Duplicate Case',
-			email: 'example+duplicate@gmail.com',
-			password: 'qazwsxedc',
-		},
 	],
 } as const
 
