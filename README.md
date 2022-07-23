@@ -23,13 +23,16 @@ pnpm dev # start hmr for all adm/backend/fronted
 
 ## used ports
 - in host
+	- nuxt (fronted) - http://localhost:3000
 	- fastify (backend) - http://localhost:3001
 	- swagger (backend) - http://localhost:3001/documentation
+	- vue (adm) - http://localhost:3002
 - in nginx
+	- fronted - http://localhost:3030
 	- backend
 		- api - `localhost/api/*`
 		- storage - `localhost/storage/*`
-		- close api (only for adm) - `localhost/adm/*`
+	- adm - http://adm.localhost:3030
 - other
 	- postgres `:port=54320`
 	- redis `:port=63790`
