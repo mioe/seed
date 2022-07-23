@@ -14,6 +14,7 @@ cd packages/backend # move to backend folder
 cp .env.example .env # copy and change .env vars
 npx prisma migrate dev # migrate tables
 npx prisma generate # generate client dto
+npx prisma db seed # seeding base data
 openssl genrsa -des3 -out ./src/config/private.pem 2048 # generate private.key for jwt
 openssl rsa -in ./src/config/private.pem -outform PEM -pubout -out ./src/config/public.pem # generate public.key for jwt
 cd ../.. # move to root folder
