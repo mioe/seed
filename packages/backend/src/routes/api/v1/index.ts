@@ -35,7 +35,7 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 				if (!fSimpleRole) {
 					throw new Error('🦕 Simple Role doesn\'t exist')
 				}
-				console.log('🦕 Cache for Simple Role created!')
+				fastify.log.info('🦕 Cache for Simple Role created!')
 				CACHE_SIMPLE_ROLE_ID = fSimpleRole.id
 			}
 
@@ -49,10 +49,9 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 				},
 			} as Prisma.UserCreateInput
 
-			const user = await prisma.user.create({ data: bodyData })
-			console.log('🦕 user', user)
+			await prisma.user.create({ data: bodyData })
 		} catch (err) {
-			fastify.log.error('user', err)
+			fastify.log.error(err)
 			throw new Error(`🦕 Something went wrong\n ${err}`)
 		}
 

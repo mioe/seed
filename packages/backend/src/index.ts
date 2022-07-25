@@ -19,7 +19,7 @@ const fastify: FastifyInstance<
 			options: {
 				destination: 1,
 				colorize: true,
-				translateTime: 'HH:MM:ss Z',
+				translateTime: 'mm-dd-yy HH:MM:ss Z',
 				ignore: 'pid,hostname',
 			},
 		},
