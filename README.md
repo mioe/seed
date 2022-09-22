@@ -5,7 +5,7 @@
 - dev mode
 	- nodejs >= 16
 	- pnpm >= 6
-	- docker + docker-compose
+	- docker
 
 ## first installation
 ```bash
