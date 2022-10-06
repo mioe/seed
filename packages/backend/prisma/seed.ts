@@ -20,12 +20,12 @@ const main = async() => {
 		const fRole = await prisma.role.findFirst({ where: { name: r.name } })
 		if (!fRole) {
 			const role = await prisma.role.create({ data: r })
-			console.log('🦕 Role created!', role.id, role.name)
+			console.log('🔥 Role created!', role.id, role.name)
 		} else {
 			console.log('🦕 Skip role', fRole?.id, fRole?.name)
 		}
 	}
-	console.log('🔥 Seeding finished')
+	console.log('🥑 Seeding finished')
 }
 
 main()
