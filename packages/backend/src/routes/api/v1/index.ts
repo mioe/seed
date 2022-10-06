@@ -2,8 +2,9 @@ import {
 	signUpSchema,
 } from './schema'
 import { SIMPLE_ROLE_NAME } from '../../../common/constants/const'
-import type { FastifyPluginAsync, FastifyReply } from 'fastify'
-import type { Prisma } from '@prisma/client'
+import { FastifyPluginAsync, FastifyReply } from 'fastify'
+import { Prisma } from '@prisma/client'
+import { createHmac } from 'node:crypto'
 
 const generateNewTokens = async(reply: FastifyReply) => {
 	const [token, refreshToken] = await Promise.all([
@@ -31,7 +32,9 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 
 		try {
 			if (!CACHE_SIMPLE_ROLE_ID) {
-				const fSimpleRole = await prisma.role.findFirst({ where: { name: SIMPLE_ROLE_NAME } })
+				const fSimpleRole = await prisma.role.findFirst({
+					where: { name: SIMPLE_ROLE_NAME },
+				})
 				if (!fSimpleRole) {
 					throw new Error('🦕 Simple Role doesn\'t exist')
 				}
@@ -40,8 +43,12 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 			}
 
 			const bodyRequest = request.body as Prisma.UserCreateInput
+			const hashPassword = createHmac('sha256', process.env.PASSWORD_SECRET as string)
+				.update(bodyRequest.password)
+				.digest('hex')
 			const bodyData = {
 				...bodyRequest,
+				password: hashPassword,
 				Role: {
 					connect: {
 						id: CACHE_SIMPLE_ROLE_ID,
@@ -63,37 +70,37 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 		reply.send({ token, refreshToken })
 	})
 
-	fastify.post('/sign-in', {
-		schema: signUpSchema,
-	},
-	(_, reply) => {
-		const token = fastify.jwt.sign({ username: 'misha misha' })
-		reply.send({ token })
-	})
+	// fastify.post('/sign-in', {
+	// 	schema: signUpSchema,
+	// },
+	// (_, reply) => {
+	// 	const token = fastify.jwt.sign({ username: 'misha misha' })
+	// 	reply.send({ token })
+	// })
 
-	fastify.post('/sign-out', {
-		schema: signUpSchema,
-	},
-	(_, reply) => {
-		const token = fastify.jwt.sign({ username: 'misha misha' })
-		reply.send({ token })
-	})
+	// fastify.post('/sign-out', {
+	// 	schema: signUpSchema,
+	// },
+	// (_, reply) => {
+	// 	const token = fastify.jwt.sign({ username: 'misha misha' })
+	// 	reply.send({ token })
+	// })
 
-	fastify.post('/refresh-token', {
-		onRequest: [fastify.authenticate],
-		schema: signUpSchema,
-	},
-	async(_, reply) => {
-		const { token, refreshToken } = await generateNewTokens(reply)
-		reply.send({ token, refreshToken })
-	})
+	// fastify.post('/refresh-token', {
+	// 	onRequest: [fastify.authenticate],
+	// 	schema: signUpSchema,
+	// },
+	// async(_, reply) => {
+	// 	const { token, refreshToken } = await generateNewTokens(reply)
+	// 	reply.send({ token, refreshToken })
+	// })
 
-	fastify.get('/protected', {
-		onRequest: [fastify.authenticate],
-	},
-	async(request, reply) => {
-		reply.send({ user: request.user })
-	})
+	// fastify.get('/protected', {
+	// 	onRequest: [fastify.authenticate],
+	// },
+	// async(request, reply) => {
+	// 	reply.send({ user: request.user })
+	// })
 }
 
 export default routes
