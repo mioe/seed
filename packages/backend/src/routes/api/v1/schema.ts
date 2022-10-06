@@ -1,5 +1,5 @@
 import { FromSchema } from 'json-schema-to-ts'
-import type { FastifySchema } from 'fastify'
+import { FastifySchema } from 'fastify'
 
 export const signUpBody = {
 	type: 'object',

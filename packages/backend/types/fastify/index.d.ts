@@ -1,5 +1,5 @@
-import type { onRequestHookHandler } from 'fastify'
-import type { PrismaClient } from '@prisma/client'
+import { onRequestHookHandler } from 'fastify'
+import { PrismaClient } from '@prisma/client'
 
 declare module 'fastify' {
 	export interface FastifyInstance {

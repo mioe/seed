@@ -1,6 +1,6 @@
 import fp from 'fastify-plugin'
 import { PrismaClient } from '@prisma/client'
-import type { FastifyPluginAsync } from 'fastify'
+import { FastifyPluginAsync } from 'fastify'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const prismaPlugin: FastifyPluginAsync = fp(async(server, opts) => {

@@ -1,7 +1,7 @@
 import fp from 'fastify-plugin'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import type {
+import {
 	FastifyPluginCallback,
 	FastifyRequest,
 	FastifyReply,

@@ -1,5 +1,5 @@
 import fp from 'fastify-plugin'
-import type { FastifyPluginCallback } from 'fastify'
+import { FastifyPluginCallback } from 'fastify'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const redisPlugin: FastifyPluginCallback = fp(async(fastify: any, opts: any, done: any) => {

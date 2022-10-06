@@ -1,6 +1,6 @@
 import fp from 'fastify-plugin'
 import swagger from '@fastify/swagger'
-import type { FastifyDynamicSwaggerOptions } from '@fastify/swagger'
+import { FastifyDynamicSwaggerOptions } from '@fastify/swagger'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default fp<FastifyDynamicSwaggerOptions>(async(fastify, opts) => {
