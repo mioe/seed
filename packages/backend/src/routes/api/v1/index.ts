@@ -5,16 +5,27 @@ import { SIMPLE_ROLE_NAME } from '../../../common/constants/const'
 import { FastifyPluginAsync, FastifyReply } from 'fastify'
 import { Prisma } from '@prisma/client'
 import { createHmac } from 'node:crypto'
+import { v4 as uuidv4 } from 'uuid'
 
-const generateNewTokens = async(reply: FastifyReply) => {
-	const [token, refreshToken] = await Promise.all([
-		reply.jwtSign({ username: 'misha misha' }),
-		reply.jwtSign({ username: 'dd' }, { expiresIn: '3d' }),
-	])
+const generateNewTokens = async(
+	reply: FastifyReply,
+	currentUser: Prisma.UserCreateInput,
+) => {
+	const accessToken = await reply.jwtSign({
+		id: currentUser.id,
+		username: currentUser.username,
+		email: currentUser.email,
+	})
+	const refreshToken = uuidv4()
 	return {
-		token,
+		accessToken,
 		refreshToken,
 	}
+}
+
+interface SignUpBody {
+	body: Prisma.UserCreateInput
+	fingerprint: string,
 }
 
 let CACHE_SIMPLE_ROLE_ID: number | undefined = undefined
@@ -42,12 +53,12 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 				CACHE_SIMPLE_ROLE_ID = fSimpleRole.id
 			}
 
-			const bodyRequest = request.body as Prisma.UserCreateInput
+			const bodyRequest = request.body as SignUpBody
 			const hashPassword = createHmac('sha256', process.env.PASSWORD_SECRET as string)
-				.update(bodyRequest.password)
+				.update(bodyRequest.body.password)
 				.digest('hex')
 			const bodyData = {
-				...bodyRequest,
+				...bodyRequest.body,
 				password: hashPassword,
 				Role: {
 					connect: {
@@ -56,18 +67,16 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 				},
 			} as Prisma.UserCreateInput
 
-			await prisma.user.create({ data: bodyData })
+			const currentUser = await prisma.user.create({ data: bodyData }) as any
+			const { accessToken, refreshToken } = await generateNewTokens(reply, currentUser)
+			redis.hmset(`user:${currentUser.id}`, [`${refreshToken}`, `${bodyRequest.fingerprint}`], (err) => {
+				if (err) { throw new Error(`🦕 ${err}`) }
+			})
+			reply.send({ accessToken, refreshToken })
 		} catch (err) {
 			fastify.log.error(err)
 			throw new Error(`🦕 Something went wrong\n ${err}`)
 		}
-
-		const { token, refreshToken } = await generateNewTokens(reply)
-		// redis.set('hello', 'world', (err) => {
-		// reply.send(err || { token, refreshToken })
-		// })
-
-		reply.send({ token, refreshToken })
 	})
 
 	// fastify.post('/sign-in', {

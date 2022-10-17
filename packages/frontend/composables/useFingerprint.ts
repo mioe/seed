@@ -7,9 +7,6 @@ const useFingerprint = async() => {
 	const parser = new uaParse()
 	const ua = parser.getResult()
 
-	console.log('🦕 fjs', print)
-	console.log('🦕 ua', ua)
-
-	return `${print.visitorId} :: ${ua.os.name}(${ua.os.version}) :: ${ua.browser.name}(${ua.browser.version}) :: ${ua.engine.name}`
+	return `${print.visitorId}::${ua.os.name}(${ua.os.version})::${ua.browser.name}(${ua.browser.version})::${ua.engine.name}`
 }
 export { useFingerprint }

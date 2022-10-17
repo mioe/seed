@@ -35,6 +35,7 @@ importers:
       '@fastify/swagger': ^7.6.1
       '@prisma/client': ^4.4.0
       '@types/node': ^18.8.3
+      '@types/uuid': ^8.3.4
       dotenv: ^16.0.3
       esbuild: ^0.15.10
       esbuild-node-tsc: ^2.0.4
@@ -46,6 +47,7 @@ importers:
       prisma: ^4.4.0
       ts-node: ^10.9.1
       typescript: ^4.8.4
+      uuid: ^9.0.0
     dependencies:
       '@fastify/autoload': 5.4.0
       '@fastify/jwt': 6.3.2
@@ -56,8 +58,10 @@ importers:
       fastify: 4.7.0
       fastify-plugin: 4.2.1
       json-schema-to-ts: 2.5.5
+      uuid: 9.0.0
     devDependencies:
       '@types/node': 18.8.3
+      '@types/uuid': 8.3.4
       esbuild: 0.15.10
       esbuild-node-tsc: 2.0.4_5q3fyz5bjtea3po22ds7wgriri
       nodemon: 2.0.20
@@ -1097,6 +1101,10 @@ packages:
 
   /@types/tough-cookie/4.0.2:
     resolution: {integrity: sha512-Q5vtl1W5ue16D+nIaW8JWebSSraJVlK+EthKn7e7UcD4KWsaSJ8BqGPXNaPghgtcn/fhvrN17Tv8ksUsQpiplw==}
+    dev: true
+
+  /@types/uuid/8.3.4:
+    resolution: {integrity: sha512-c/I8ZRb51j+pYGAu5CrFMRxqZ2ke4y2grEBO5AUjgSkSk+qT2Ea+OdWElz/OiMf5MNpn2b17kuVBwZLQJXzihw==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.38.0_cxqatnnjiq7ozd2bkspxnuicdq:
@@ -6517,6 +6525,11 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache-lib/3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}

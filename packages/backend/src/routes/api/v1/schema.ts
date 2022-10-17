@@ -4,20 +4,27 @@ import { FastifySchema } from 'fastify'
 export const signUpBody = {
 	type: 'object',
 	properties: {
-		username: { type: 'string' },
-		email: { type: 'string' },
-		password: { type: 'string' },
+		body: {
+			properties: {
+				username: { type: 'string' },
+				email: { type: 'string' },
+				password: { type: 'string' },
+			},
+		},
+		fingerprint: { type: 'string' },
 	},
 	required: [
-		'username',
-		'email',
-		'password',
+		'body',
+		'fingerprint',
 	],
 	examples: [
 		{
-			username: `Example-${Date.now()}`,
-			email: `example+${Date.now()}@gmail.com`,
-			password: 'qazwsxedc',
+			body:{
+				username: `Example-${Date.now()}`,
+				email: `example+${Date.now()}@gmail.com`,
+				password: 'qazwsxedc',
+			},
+			fingerprint: '0427ef4bd35f736f37e25034cb1d934c::Mac OS(10.15.7)::Chrome(106.0.0.0)::Blink',
 		},
 	],
 } as const
