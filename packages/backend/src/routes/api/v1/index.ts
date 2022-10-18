@@ -72,7 +72,13 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 			redis.hmset(`user:${currentUser.id}`, [`${refreshToken}`, `${bodyRequest.fingerprint}`], (err) => {
 				if (err) { throw new Error(`🦕 ${err}`) }
 			})
-			reply.send({ accessToken, refreshToken })
+			reply
+				.setCookie('accessToken', accessToken, {
+					domain: 'localhost',
+					path: '/api',
+					signed: true,
+				})
+				.send({ accessToken, refreshToken })
 		} catch (err) {
 			fastify.log.error(err)
 			throw new Error(`🦕 Something went wrong\n ${err}`)

@@ -1,6 +1,13 @@
 import { FromSchema } from 'json-schema-to-ts'
 import { FastifySchema } from 'fastify'
 
+const DEFAULT_USER = {
+	username: 'Example',
+	email: 'example@example.com',
+	password: 'qazwsxedc',
+	fingerprint: '0427ef4bd35f736f37e25034cb1d934c::Mac OS(10.15.7)::Chrome(106.0.0.0)::Blink',
+}
+
 export const signUpBody = {
 	type: 'object',
 	properties: {
@@ -20,11 +27,11 @@ export const signUpBody = {
 	examples: [
 		{
 			body:{
-				username: `Example-${Date.now()}`,
-				email: `example+${Date.now()}@gmail.com`,
-				password: 'qazwsxedc',
+				username: DEFAULT_USER.username,
+				email: DEFAULT_USER.email,
+				password: DEFAULT_USER.password,
 			},
-			fingerprint: '0427ef4bd35f736f37e25034cb1d934c::Mac OS(10.15.7)::Chrome(106.0.0.0)::Blink',
+			fingerprint: DEFAULT_USER.fingerprint,
 		},
 	],
 } as const
