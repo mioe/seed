@@ -3,13 +3,33 @@ import {
 } from './schema'
 import { SIMPLE_ROLE_NAME } from '../../../common/constants/const'
 import { FastifyPluginAsync, FastifyReply } from 'fastify'
+import { FastifyRedis } from '@fastify/redis'
 import { Prisma } from '@prisma/client'
 import { createHmac } from 'node:crypto'
 import { v4 as uuidv4 } from 'uuid'
 
+const encodeRefreshToken = (token: string, userId: string) => {
+	const separator = '-'
+	const a = token.split(separator)
+	const b = userId.split(separator)
+	return `${a[0]}${separator}${b[4]}${separator}${a[1]}${separator}${b[3]}${separator}${a[2]}${separator}${b[2]}${separator}${a[3]}${separator}${b[1]}${separator}${a[4]}${separator}${b[0]}`
+}
+
+const decodeRefreshToken = (token: string) => {
+	const separator = '-'
+	const a = token.split(separator)
+	return {
+		userId: `${a[0]}${separator}${a[2]}${separator}${a[4]}${separator}${a[6]}${separator}${a[8]}`,
+		refreshToken: `${a[9]}${separator}${a[7]}${separator}${a[5]}${separator}${a[3]}${separator}${a[1]}`,
+	}
+}
+
 const generateNewTokens = async(
 	reply: FastifyReply,
+	redis: FastifyRedis,
 	currentUser: Prisma.UserCreateInput,
+	fingerprint: string,
+	prefix: string | undefined = 'user',
 ) => {
 	const accessToken = await reply.jwtSign({
 		id: currentUser.id,
@@ -17,9 +37,12 @@ const generateNewTokens = async(
 		email: currentUser.email,
 	})
 	const refreshToken = uuidv4()
+	redis.set(`${prefix}:${currentUser.id}:${refreshToken}`, fingerprint, (err) => {
+		if (err) { throw new Error(`🦕 ${err}`) }
+	})
 	return {
 		accessToken,
-		refreshToken,
+		refreshToken: encodeRefreshToken(refreshToken, currentUser.id as string),
 	}
 }
 
@@ -68,10 +91,12 @@ const routes: FastifyPluginAsync = async(fastify, opts) => {
 			} as Prisma.UserCreateInput
 
 			const currentUser = await prisma.user.create({ data: bodyData }) as any
-			const { accessToken, refreshToken } = await generateNewTokens(reply, currentUser)
-			redis.hmset(`user:${currentUser.id}`, [`${refreshToken}`, `${bodyRequest.fingerprint}`], (err) => {
-				if (err) { throw new Error(`🦕 ${err}`) }
-			})
+			const { accessToken, refreshToken } = await generateNewTokens(
+				reply,
+				redis,
+				currentUser,
+				bodyRequest.fingerprint,
+			)
 			reply
 				.setCookie('accessToken', accessToken, {
 					domain: 'localhost',
