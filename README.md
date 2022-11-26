@@ -5,18 +5,19 @@
 - dev mode
 	- nodejs >= 16
 	- pnpm >= 6
-	- docker + docker-compose
+	- docker
 
 ## first installation
 ```bash
 pnpm install --shamefully-hoist  # install packages
-cd backend # move to backend folder
+cd packages/backend # move to backend folder
 cp .env.example .env # copy and change .env vars
 npx prisma migrate dev # migrate tables
 npx prisma generate # generate client dto
+npx prisma db seed # seeding base data
 openssl genrsa -des3 -out ./src/config/private.pem 2048 # generate private.key for jwt
 openssl rsa -in ./src/config/private.pem -outform PEM -pubout -out ./src/config/public.pem # generate public.key for jwt
-cd .. # move to root folder
+cd ../.. # move to root folder
 docker-compose up # (optional) start db && nginx
 pnpm dev # start hmr for all adm/backend/fronted
 ```
@@ -32,7 +33,7 @@ pnpm dev # start hmr for all adm/backend/fronted
 	- backend
 		- api - `localhost/api/*`
 		- storage - `localhost/storage/*`
-		- close api (only for adm) - `localhost/adm/*`
 	- adm - http://adm.localhost:3030
 - other
 	- postgres `:port=54320`
+	- redis `:port=63790`

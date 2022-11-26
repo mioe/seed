@@ -9,11 +9,11 @@
 	"license": "MIT",
 	"keywords": [],
 	"scripts": {
-		"dev": "concurrently -p \"[{name}]\" -n \"adm,backend,frontend\" -c \"magenta,cyan,green\" \"cd adm && pnpm dev\" \"cd backend && pnpm dev\" \"cd frontend && pnpm dev\""
+		"dev": "concurrently -p \"[{name}]\" -n \"adm,backend,frontend\" -c \"magenta,cyan,green\" \"cd packages/adm && pnpm dev\" \"cd packages/backend && pnpm dev\" \"cd packages/frontend && pnpm dev\""
 	},
 	"devDependencies": {
 		"@mioe/eslint-config": "^0.1.1",
-		"concurrently": "^7.2.2",
-		"eslint": "^8.18.0"
+		"concurrently": "^7.4.0",
+		"eslint": "^8.23.1"
 	}
 }
